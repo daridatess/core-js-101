@@ -367,8 +367,10 @@ function getFalsyValuesCount(arr) {
  *    [ null, undefined, null ], null => 2
  *    [ true, 0, 1, 'true' ], true => 1
  */
-function findAllOccurrences(/* arr, item */) {
-  throw new Error('Not implemented');
+function findAllOccurrences(arr, item) {
+  const res = [];
+  arr.filter((el) => el !== item || res.push(el));
+  return res.length;
 }
 
 /**
@@ -382,8 +384,8 @@ function findAllOccurrences(/* arr, item */) {
  *    [1, 2, 3, 4, 5]                   => '1,2,3,4,5'
  *    ['rock', 'paper', 'scissors']     => 'rock,paper,scissors'
  */
-function toStringList(/* arr */) {
-  throw new Error('Not implemented');
+function toStringList(arr) {
+  return `${arr.join(',')}`;
 }
 
 /**
@@ -413,6 +415,27 @@ function toStringList(/* arr */) {
  *    ]
  */
 function sortCitiesArray(/* arr */) {
+  // return arr.sort((a, b) => {
+  //   const nameA = a.country.toLowerCase();
+  //   const nameB = b.country.toLowerCase();
+  //   if (nameA < nameB) {
+  //     return -1;
+  //   }
+  //   if (nameA > nameB) {
+  //     return 1;
+  //   }
+  //   return 0;
+  // }).sort((c, d) => {
+  //   const nameC = c.country.toLowerCase();
+  //   const nameD = d.country.toLowerCase();
+  //   if (nameC.city < nameD.city) {
+  //     return -1;
+  //   }
+  //   if (nameC.city > nameD.city) {
+  //     return 1;
+  //   }
+  //   return 0;
+  // });
   throw new Error('Not implemented');
 }
 
@@ -451,8 +474,15 @@ function getIdentityMatrix(/* n */) {
  *     0, 100 => [ 0, 1, 2, ..., 100 ]
  *     3, 3   => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  const result = new Array(end - start);
+  result.fill(0);
+
+  return result.reduce((previous) => {
+    previous.push(previous[previous.length - 1] + 1);
+
+    return previous;
+  }, [start]);
 }
 
 /**
@@ -466,8 +496,8 @@ function getIntervalArray(/* start, end */) {
  *   [ 'a', 'a', 'a', 'a' ]  => [ 'a' ]
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  return new Array(new Set(arr));
 }
 
 /**
@@ -500,8 +530,19 @@ function distinct(/* arr */) {
  *    "Poland" => ["Lodz"]
  *   }
  */
-function group(/* array, keySelector, valueSelector */) {
-  throw new Error('Not implemented');
+function group(array, keySelector, valueSelector) {
+  return array.reduce((akk, count) => {
+    const keyCountry = keySelector(count);
+    const keyCity = valueSelector(count);
+
+    const arr = akk.get(keyCountry) || [];
+
+    arr.push(keyCity);
+
+    akk.set(keyCountry, arr);
+
+    return akk;
+  }, new (Map)());
 }
 
 /**
