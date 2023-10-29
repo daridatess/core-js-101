@@ -369,16 +369,12 @@ function getFalsyValuesCount(arr) {
  */
 function findAllOccurrences(arr, item) {
   const res = [];
-<<<<<<< HEAD
-  arr.filter((el) => el !== item || res.push(el));
-=======
   arr.map((items) => {
     if (items === item) {
       return res.push(items);
     }
     return null;
   });
->>>>>>> 9c9510779cb456bfd51304218fe5c35e0cb5afce
   return res.length;
 }
 
@@ -394,11 +390,7 @@ function findAllOccurrences(arr, item) {
  *    ['rock', 'paper', 'scissors']     => 'rock,paper,scissors'
  */
 function toStringList(arr) {
-<<<<<<< HEAD
   return `${arr.join(',')}`;
-=======
-  return arr.join();
->>>>>>> 9c9510779cb456bfd51304218fe5c35e0cb5afce
 }
 
 /**
@@ -510,11 +502,7 @@ function getIntervalArray(start, end) {
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
 function distinct(arr) {
-<<<<<<< HEAD
-  return new Array(new Set(arr));
-=======
   return [...new Set(arr)];
->>>>>>> 9c9510779cb456bfd51304218fe5c35e0cb5afce
 }
 
 /**
